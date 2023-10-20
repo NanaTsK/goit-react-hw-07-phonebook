@@ -1,8 +1,4 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
-import { addContactAction } from 'redux/contact/contactSlice';
-import { nanoid } from 'nanoid';
 import {
   PhonebookForm,
   InputWrap,
@@ -10,6 +6,10 @@ import {
   ContactInput,
   ContactAddBtn,
 } from './ContactForm.styled';
+import { nanoid } from 'nanoid';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
+import { addContactAction } from 'redux/contact/contactSlice';
 import { notifyInit } from 'components/index.styled';
 import { Notify } from 'notiflix';
 
