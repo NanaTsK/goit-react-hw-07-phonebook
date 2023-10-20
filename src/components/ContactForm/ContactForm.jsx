@@ -9,7 +9,8 @@ import {
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
-import { addContactAction } from 'redux/contact/contactSlice';
+// import { addContactAction } from 'redux/contact/contactSlice';
+import { createContactThunk } from 'redux/contact/thunks';
 import { notifyInit } from 'components/index.styled';
 import { Notify } from 'notiflix';
 
@@ -24,6 +25,19 @@ const ContactForm = () => {
   const { contacts } = useSelector(getContacts);
   const dispatch = useDispatch();
 
+  const handleSubmitForm = e => {
+    e.preventDefault();
+    const isTrue = contacts.some(contact => name === contact.name);
+    if (isTrue) {
+      Notify.info(`${name} is already in your Contact List!`, notifyInit);
+      return;
+    }
+    dispatch(createContactThunk({ name, number, id: nanoid() }));
+    Notify.success(`${name} added to your Contact List!`, notifyInit);
+    setName(INITIAL_STATE.name);
+    setNumber(INITIAL_STATE.number);
+  };
+
   const handleInput = e => {
     const { name, value } = e.target;
 
@@ -37,19 +51,6 @@ const ContactForm = () => {
       default:
         return;
     }
-  };
-
-  const handleSubmitForm = e => {
-    e.preventDefault();
-    const isTrue = contacts.some(contact => name === contact.name);
-    if (isTrue) {
-      Notify.info(`${name} is already in your Contact List!`, notifyInit);
-      return;
-    }
-    dispatch(addContactAction({ name, number, id: nanoid() }));
-    Notify.success(`${name} added to your Contact List!`, notifyInit);
-    setName(INITIAL_STATE.name);
-    setNumber(INITIAL_STATE.number);
   };
 
   return (
