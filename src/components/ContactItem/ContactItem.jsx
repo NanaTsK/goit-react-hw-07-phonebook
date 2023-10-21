@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-// import { removeContactAction } from 'redux/contact/contactSlice';
 import { deleteContactThunk } from 'redux/contact/thunks';
 import {
   Contact,
