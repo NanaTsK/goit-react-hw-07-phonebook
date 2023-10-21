@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { removeContactAction } from 'redux/contact/contactSlice';
+// import { removeContactAction } from 'redux/contact/contactSlice';
+import { deleteContactThunk } from 'redux/contact/thunks';
 import {
   Contact,
   ContactName,
@@ -13,7 +14,7 @@ const ContactItem = ({ contacts }) => {
   const dispatch = useDispatch();
 
   const handleRemoveContact = (id, name) => {
-    dispatch(removeContactAction(id));
+    dispatch(deleteContactThunk(id));
     Notify.info(`${name} removed from your Contact List!`, notifyInit);
   };
 
