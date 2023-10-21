@@ -12,6 +12,9 @@ import { getAllContactsThunk } from 'redux/contact/thunks';
 const App = () => {
   const { isLoading, error } = useSelector(selectAppState);
 
+  console.log('isLoading:', isLoading);
+  console.log('error:', error);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

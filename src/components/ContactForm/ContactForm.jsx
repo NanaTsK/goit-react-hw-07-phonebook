@@ -8,7 +8,8 @@ import {
 } from './ContactForm.styled';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+// import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/contact/selectors';
 import { createContactThunk } from 'redux/contact/thunks';
 import { notifyInit } from 'components/index.styled';
 import { Notify } from 'notiflix';
@@ -21,7 +22,9 @@ const INITIAL_STATE = {
 const ContactForm = () => {
   const [name, setName] = useState(INITIAL_STATE.name);
   const [number, setNumber] = useState(INITIAL_STATE.number);
-  const { contacts } = useSelector(getContacts);
+  // const { contacts } = useSelector(getContacts);
+  const { contacts } = useSelector(selectContacts);
+
   const dispatch = useDispatch();
 
   const handleSubmitForm = e => {
