@@ -18,25 +18,15 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Container>
-          {error ? (
-            <h1>Oooops! Something went wrong</h1>
-          ) : (
-            <>
-              <h1>Phonebook</h1>
-              <ContactForm />
-              <h2>Contacts</h2>
-              <Filter />
-              <ContactList />
-            </>
-          )}
-        </Container>
-      )}
-    </>
+    <Container>
+      <h1>Phonebook</h1>
+      <ContactForm />
+      <h2>Contacts</h2>
+      <Filter />
+      {isLoading && <Loader />}
+      {error && <h1>Oooops! Something went wrong</h1>}
+      <ContactList />
+    </Container>
   );
 };
 
